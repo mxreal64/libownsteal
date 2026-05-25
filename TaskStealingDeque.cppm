@@ -1,18 +1,3 @@
-// Copyright (C) 2026 mxreal64
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program. If not, see <https://gnu.org>.
-
 export module TaskStealingDeque;
 
 import <cstdint>;
@@ -79,18 +64,21 @@ public:
     }
 
     bool steal(TaskType& task) noexcept {
-        while (true) {
-            int64_t t = tail_.load(std::memory_order_seq_cst);
-            int64_t h = head_.load(std::memory_order_seq_cst);
+    while (true) {
+        int64_t t = tail_.load(std::memory_order_acquire);
+        int64_t h = head_.load(std::memory_order_acquire);
 
-            if (t >= h) {
-                return false;
-            }
+        if (t >= h) {
+            return false;
+        }
 
-            if (tail_.compare_exchange_strong(t, t + 1, std::memory_order_seq_cst, std::memory_order_seq_cst)) {
-                task = std::move(storage_[t & Mask]);
-                return true;
-            }
+        TaskType local_task = storage_[t & Mask]; 
+
+        if (tail_.compare_exchange_strong(t, t + 1, std::memory_order_seq_cst, std::memory_order_relaxed)) {
+            task = std::move(local_task);
+            return true;
         }
     }
+}
+
 };
