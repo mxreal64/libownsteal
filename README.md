@@ -1,4 +1,4 @@
-# libownsteal 🚀
+# libownsteal 
 
 A blazing-fast, single-file lock-free Chase-Lev Task-Stealing Deque implemented in standard **C++20/C++23 Modules**.
 
@@ -6,7 +6,7 @@ Designed for ultra-low latency scheduling systems, parallel game engines, and hi
 
 ---
 
-## 💎 Key Features
+##  Key Features
 
 * **Lock-Free Architecture:** Single-writer, multi-reader queues utilizing explicit atomic memory barriers (`std::memory_order_release` / `acquire`).
 * **Hardware Cache Isolation:** Key indices are explicitly separated with `alignas(64)` to completely prevent CPU cache false sharing.
@@ -15,7 +15,7 @@ Designed for ultra-low latency scheduling systems, parallel game engines, and hi
 
 ---
 
-## 🛠️ Quick Start
+##  Quick Start
 
 Because **libownsteal** is built entirely using standard C++ modules, you can drop the `.cppm` file directly into your workspace and import it:
 
@@ -62,14 +62,14 @@ int main() {
 
 ---
 
-## ⚡ Performance Context
+##  Performance Context
 
 * **Memory Layout:** Keeps memory footprints perfectly contiguous in cache.
 * **Algorithmic Bounds:** Push and Pop operations execute in $O(1)$ constant time with minimal atomic contention.
 
 ---
 
-## ⚖️ License
+##  License
 
 This project is open-source software licensed under the **GNU General Public License v3 (GPL-3.0)**. See the `LICENSE` file for details.
 
