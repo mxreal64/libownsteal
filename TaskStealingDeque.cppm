@@ -62,7 +62,7 @@ public:
         head_.store(h + 1, std::memory_order_release);
         return false;
     }
-
+// ronaldoooooooooooo
     bool steal(TaskType& task) noexcept {
     while (true) {
         int64_t t = tail_.load(std::memory_order_acquire);
