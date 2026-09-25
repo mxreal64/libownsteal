@@ -14,7 +14,7 @@
 // along with this program. If not, see <https://gnu.org>.
 //
 // -----------------------------------------------------------------------
-// changes vs. the lest iteration:
+// changes vs. the last iteration:
 //
 // 1. BUG (weak-memory correctness, silent on x86): steal() was missing the
 //    seq_cst fence between its tail_/head_ loads that pop() already has
