@@ -44,6 +44,9 @@
 //    work-stealing scheduler spends almost all its time in push() succeeding
 //    and pop()'s uncontested t < h path; the capacity-exceeded, contested-
 //    last-slot, and empty-deque paths are the exceptions.
+//    
+//    NOTE: as for verification on arm/powerpc, i'm not doin that cuz who
+//    is running an hft firm on a mac?
 // -----------------------------------------------------------------------
 
 export module TaskStealingDeque;
